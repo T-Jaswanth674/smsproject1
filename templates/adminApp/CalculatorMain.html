@@ -1,0 +1,55 @@
+{% extends 'Navbar/Projectnavbar.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator Main</title>
+</head>
+<body>
+
+{% block body %}
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      <div>
+        <br><br>
+        <h1 class="mt-5">Simple Calculator</h1>
+        <form method="post" action='{% url 'calculatormainlogic' %}' >
+            {% csrf_token %}
+            <input type="number" name="num1" step="any" placeholder="Enter first number" class="mt-3 rounded" required><br>
+            <input type="number" name="num2" step="any" placeholder="Enter second number" class="mt-3 mb-3 rounded" required><br>
+            <select name="operation" class="rounded" required>
+                <option value="add">+</option>
+                <option value="subtract">-</option>
+                <option value="multiply">*</option>
+                <option value="divide">/</option>
+            </select>
+            <div>
+                <button type="submit" class="btn btn-success mt-3 mb-5">Calculate</button>
+            </div>
+        </form>
+      </div>
+    </div>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br>
+       <div class="col-auto d-flex align-items-center">
+      <div style="border-left: 2px solid yellow; height: 100%;"></div>
+    </div>
+    <div class="col" >
+        <br><br>
+      <h3 style="color:orange; "> Output will be displayed Here</h3>
+
+      <h1>
+        {% if result %}
+        <h2 class="text-center">Result: {{ result }}</h2>
+    {% elif error %}
+        <h2 style="color: red;">Error: {{ error }}</h2>
+    {% endif %}
+      </h1>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

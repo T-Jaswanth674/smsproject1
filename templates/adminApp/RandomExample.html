@@ -1,0 +1,33 @@
+{% extends 'Navbar/ProjectNavbar.html' %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Generator</title>
+    <link rel="stylesheet" href="{% static 'css/RandomExample.css' %}">
+</head>
+<body>
+{% block body %}
+
+    <div class="bg-container container text-center">
+      <div class="row">
+        <div class="col">
+            <br>
+            <form method="post" action="{% url 'randomlogic' %}">
+            {% csrf_token %}
+                <label>Enter Text:</label>
+                <input type="text" name="number1" required>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+        <div class="col order-5 bg-body-tertiary">
+          <h1 style="font-size:24px; color: cadetblue ">OUTPUT:</h1>
+            <h1>{{ ran }}</h1>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+</body>
+</html>

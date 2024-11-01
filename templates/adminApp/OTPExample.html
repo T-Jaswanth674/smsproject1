@@ -1,0 +1,48 @@
+{% extends 'Navbar/ProjectNavbar.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OTP Generator</title>
+</head>
+<body>
+
+{% block body %}
+<div class="container-fluid text-center">
+  <div class="row">
+    <div class="col" style="background-color: #f8f9fa;">
+      <div class="mt-5">
+        <br><br>
+        <h1 style="color: darkslategray;">Enter Your Value:</h1>
+        <form method="post" action="{% url 'otplogic' %}">
+            {% csrf_token %}
+            <label class="mt-3" style="font-size: 18px;">Enter a Number:</label><br>
+            <input type="text" name="user_input" class="mt-3" required>
+            <br><br>
+            <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-danger" type="submit">Submit</button>
+            </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-auto d-flex align-items-center">
+      <div style="border-left: 2px solid #6c757d; height: 100%;"></div>
+    </div>
+    <div class="col" style="background-color: #f8f9fa;">
+        <br><br>
+      <h3 style="color: darkslategray;">Output will be displayed here</h3>
+
+      <h1 class="mt-5">
+        {% if result %}
+          <h2>Result: {{ result }}</h2>
+        {% elif error %}
+          <h2 style="color: red;">Error: {{ error }}</h2>
+        {% endif %}
+      </h1>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+</body>
+</html>
